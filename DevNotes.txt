@@ -1,0 +1,10 @@
+Developer Notes
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Format: [Program] Text
+OR         --Answer
+
+--------------------------------------------------
+
+[BFEvo] Der Pool wird immer größer. Nach ein paar
+        Runden sind schon über 12000 zu sortieren.
+        Warum? Die Mutation sollte doch immer gleich sein?

@@ -1,0 +1,39 @@
+Jedes Programm im Pool wird von einem Validator untersucht. Dieser ist von der
+abstrakten Basisklasse TBFPrgValidatorBase abgeleitet.
+Diese Klasse muss in der Datei uMain.pas im OnCreate der Form als Evo.EvClass
+der Klasse bekannt gemacht zu werden.
+
+Funktionen von TBFPrgValidatorBase
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Procedure GetInput(Index: integer; Var S: String);
+    Holt (simulierte) Eingabedaten. Index gibt an, zum wievielten mal die
+    Funktion aufgerufen wird.
+    Somit könnnen mehrere Eingaben simuliert werden.
+
+Function ValidateResult: single; Virtual; Abstract;
+    Überprüft ein Ergebnis und gibt zurück, wie genau ein Ergebnis stimmt.
+    Dabei gilt: 0(ganz schlecht) <= Result <= 1(sehr gut)
+    Hier sollte auch das Flag FProgram.Correct gesetzt werden, um zu kennzeichnen
+    ob das Ergebnis korrekt ist.
+
+Class Function CommandSet: String; Virtual; Abstract;
+    Gibt alle Befehle zurück, die erlaubt sind. Normalerweise '.<>[]-+'
+
+Function MaxSteps: integer; Virtual; Abstract;
+    Anzahl der Steps, nach der die VM das Script abbrechen soll. Damit werden
+    endlosschleifen verhindert.
+    
+Procedure Score;
+    Normalerweise muss hier nichts angepasst werden, aber möglicherweise möchte
+    ja jemand ein eigenes Scoring einführen?
+    
+Funktionen von TBFProgram
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Procedure Evolve;
+    Hier wird das Programm nach bestimmten Regeln optimiert und verändert. Diese
+    sorgen für Zielgerichtete Entwicklung.
+
+Procedure Mutate;
+    Hier wird das Programm mehr oder weniger Zufällig mutiert. Dadurch entstehen
+    Veränderungen, die eventuell unerwartete Verbesserungen bringen können.
+    
